@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Authentication Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Authentication Container -->
+    <div class="auth-container" id="authContainer">
+        <div class="form-toggle">
+            <div class="toggle-bg" id="toggleBg"></div>
+            <div class="toggle-option active" data-form="signin">Sign In</div>
+            <div class="toggle-option" data-form="signup">Sign Up</div>
+        </div>
+        
+        <h1 class="form-title" id="formTitle">Welcome Back</h1>
+        
+        <!-- Sign In Form -->
+        <div class="form-section active" id="signinForm">
+            <form id="signin">
+                <div class="form-group">
+                    <label class="form-label" for="signinEmail">Email Address</label>
+                    <input type="email" id="signinEmail" class="form-input" placeholder="Enter your email" required>
+                    <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="signinPassword">Password</label>
+                    <input type="password" id="signinPassword" class="form-input" placeholder="Enter your password" required>
+                    <span class="input-icon"><i class="fas fa-lock"></i></span>
+                </div>
+                
+                <div class="forgot-password">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="submit-btn">Sign In</button>
+            </form>
+            
+            <div class="social-login">
+                <div class="social-btn google" id="googleSignIn">
+                    <i class="fab fa-google"></i>
+                </div>
+                <div class="social-btn facebook" id="facebookSignIn">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-btn x" id="xSignIn">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="form-footer">
+                Don't have an account? <a href="#" id="switchToSignup">Sign Up</a>
+            </div>
+        </div>
+        
+        <!-- Sign Up Form -->
+        <div class="form-section" id="signupForm">
+            <form id="signup">
+                <div class="form-group">
+                    <label class="form-label" for="fullName">Full Name</label>
+                    <input type="text" id="fullName" class="form-input" placeholder="Enter your full name" required>
+                    <span class="input-icon"><i class="fas fa-user"></i></span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" class="form-input" placeholder="Enter your email" required>
+                    <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" class="form-input" placeholder="Create a strong password" required>
+                    <span class="input-icon"><i class="fas fa-lock"></i></span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="form-input" placeholder="Confirm your password" required>
+                    <span class="input-icon"><i class="fas fa-lock"></i></span>
+                </div>
+                
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+            
+            <div class="social-login">
+                <div class="social-btn google" id="googleSignUp">
+                    <i class="fab fa-google"></i>
+                </div>
+                <div class="social-btn facebook" id="facebookSignUp">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-btn x" id="xSignUp">
+                    <!-- Download SVG from Twitter or use this -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="form-footer">
+                Already have an account? <a href="#" id="switchToSignin">Sign In</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Profile Container -->
+    <div class="profile-container" id="profileContainer">
+        <button class="back-btn" id="backToAuth">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-info">
+                <h2 id="profileName">User Profile</h2>
+                <p>Complete your profile information</p>
+            </div>
+        </div>
+        
+        <form id="profileForm">
+            <div class="profile-form">
+                <div class="form-group">
+                    <label class="form-label" for="profileNameInput">Full Name</label>
+                    <input type="text" id="profileNameInput" class="form-input" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="age">Age</label>
+                    <input type="number" id="age" class="form-input" placeholder="Enter your age" min="1" max="120" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="dob">Date of Birth</label>
+                    <input type="date" id="dob" class="form-input" required>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">Gender</label>
+                    <div class="gender-options">
+                        <div class="gender-option">
+                            <input type="radio" id="male" name="gender" value="male">
+                            <label class="gender-label" for="male">Male</label>
+                        </div>
+                        <div class="gender-option">
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label class="gender-label" for="female">Female</label>
+                        </div>
+                        <div class="gender-option">
+                            <input type="radio" id="other" name="gender" value="other">
+                            <label class="gender-label" for="other">Other</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">Hobbies</label>
+                    <div class="hobbies-container">
+                        <div class="hobby-option">
+                            <input type="checkbox" id="reading" name="hobbies" value="reading">
+                            <label class="hobby-label" for="reading">Reading</label>
+                        </div>
+                        <div class="hobby-option">
+                            <input type="checkbox" id="sports" name="hobbies" value="sports">
+                            <label class="hobby-label" for="sports">Sports</label>
+                        </div>
+                        <div class="hobby-option">
+                            <input type="checkbox" id="music" name="hobbies" value="music">
+                            <label class="hobby-label" for="music">Music</label>
+                        </div>
+                        <div class="hobby-option">
+                            <input type="checkbox" id="travel" name="hobbies" value="travel">
+                            <label class="hobby-label" for="travel">Travel</label>
+                        </div>
+                        <div class="hobby-option">
+                            <input type="checkbox" id="gaming" name="hobbies" value="gaming">
+                            <label class="hobby-label" for="gaming">Gaming</label>
+                        </div>
+                        <div class="hobby-option">
+                            <input type="checkbox" id="cooking" name="hobbies" value="cooking">
+                            <label class="hobby-label" for="cooking">Cooking</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="motherName">Mother's Name</label>
+                    <input type="text" id="motherName" class="form-input" placeholder="Enter mother's name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="fatherName">Father's Name</label>
+                    <input type="text" id="fatherName" class="form-input" placeholder="Enter father's name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="userMobile">Your Mobile Number</label>
+                    <input type="tel" id="userMobile" class="form-input" placeholder="Enter your mobile number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="parentMobile">Parent's Mobile Number</label>
+                    <input type="tel" id="parentMobile" class="form-input" placeholder="Enter parent's mobile number" required>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea id="description" class="form-input" placeholder="Tell us about yourself..." rows="4"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelProfile">Cancel</button>
+                    <button type="submit" class="submit-btn">Save Profile</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i>
+        <span id="messageText">Success!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: auth-portal
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGODB_URI
+        fromDatabase:
+          name: auth-db
+          property: connectionString
+
+databases:
+  - name: auth-db
+    plan: free
+    type: mongodb
+    version: 6.0
