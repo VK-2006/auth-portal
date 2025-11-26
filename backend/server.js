@@ -12,8 +12,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from frontend directory
-app.use(express.static(path.join(__dirname, 'frontend')));
+// Serve static files from frontend - FIXED PATH
+const frontendPath = path.join(__dirname, 'frontend');
+console.log('Serving static files from:', frontendPath);
+app.use(express.static(frontendPath));
 
 // MongoDB Connection
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/auth_portal';
@@ -262,9 +264,11 @@ app.get('/api/auth/verify', auth, async (req, res) => {
     res.json({ valid: true, user: req.user });
 });
 
-// Serve frontend for all other routes (SPA)
+// Serve frontend for all other routes (SPA) - FIXED PATH
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+    const indexPath = path.join(__dirname, 'frontend', 'index.html');
+    console.log('Serving index.html from:', indexPath);
+    res.sendFile(indexPath);
 });
 
 const PORT = process.env.PORT || 5000;
@@ -272,4 +276,5 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
     console.log(`Health check: http://localhost:${PORT}/api/health`);
+    console.log(`Frontend path: ${path.join(__dirname, 'frontend')}`);
 });
