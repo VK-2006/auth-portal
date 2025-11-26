@@ -12,8 +12,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from frontend directory
-app.use(express.static(path.join(__dirname, 'frontend')));
+// Serve static files from frontend
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 // MongoDB Connection
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/auth_portal';
@@ -264,7 +264,7 @@ app.get('/api/auth/verify', auth, async (req, res) => {
 
 // Serve frontend for all other routes (SPA)
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+    res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
