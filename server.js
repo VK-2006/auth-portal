@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 require('dotenv').config();
 
 const app = express();
@@ -12,8 +13,27 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Debug: Check if frontend files exist
+const frontendPath = path.join(__dirname, 'frontend');
+console.log('Frontend path:', frontendPath);
+
+// Check if frontend directory exists
+if (fs.existsSync(frontendPath)) {
+    console.log('Frontend directory exists');
+    
+    // Check if index.html exists
+    const indexPath = path.join(frontendPath, 'index.html');
+    if (fs.existsSync(indexPath)) {
+        console.log('index.html exists');
+    } else {
+        console.log('index.html NOT found');
+    }
+} else {
+    console.log('Frontend directory NOT found');
+}
+
 // Serve static files from frontend
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(frontendPath));
 
 // MongoDB Connection
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/auth_portal';
@@ -264,7 +284,19 @@ app.get('/api/auth/verify', auth, async (req, res) => {
 
 // Serve frontend for all other routes (SPA)
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+    const indexPath = path.join(__dirname, 'frontend', 'index.html');
+    console.log('Attempting to serve index.html from:', indexPath);
+    
+    if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+    } else {
+        console.error('index.html not found at:', indexPath);
+        res.status(404).json({ 
+            message: 'Frontend not found',
+            path: indexPath,
+            currentDir: __dirname
+        });
+    }
 });
 
 const PORT = process.env.PORT || 5000;
@@ -272,4 +304,5 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
     console.log(`Health check: http://localhost:${PORT}/api/health`);
+    console.log(`Current directory: ${__dirname}`);
 });
